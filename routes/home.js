@@ -22,6 +22,7 @@ server.io.on('connection', (socket) => {
         })
         try {
             const savedMessage = await new_message.save();
+            console.log("saved message")
             connected_users.every((user, index) => {
                 if (user.db_id == savedMessage.to) {
                     console.log("sent message")
@@ -48,7 +49,7 @@ server.io.on('connection', (socket) => {
 router.post('/chat/conversation', verify, async(req, res) => {
     user = req.body
 
-    var messages = await Message.find({ from: { "$in": [user.from, user.to] }, to: { "$in": [user.from, user.to] } }).limit(16).sort({ date: 1 })
+    var messages = await Message.find({ from: { "$in": [user.from, user.to] }, to: { "$in": [user.from, user.to] } }).sort({ date: -1 }).limit(16)
     console.log(messages.length)
     if (messages.length) {
         res.send(messages)
