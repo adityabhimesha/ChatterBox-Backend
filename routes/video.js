@@ -38,7 +38,7 @@ router.get('/all', verify, async(req, res) => {
     if (payload.length) {
         res.send(payload)
     } else {
-        res.status(200).send("No Stories Available")
+        res.status(200).send("")
     }
 })
 
@@ -54,7 +54,7 @@ router.post('/upload', verify, async(req, res) => {
                 console.log("This is file storage error", err)
                 res.status(500).send("Upload Failed, Try Again!")
             } else {
-                user.video_link = req.file.path
+                user.video_link = req.file.filename;
                 user.date = moment().add(10, 'm');
                 user.save()
                 res.status(200).send("Story Uploaded Successfully!")

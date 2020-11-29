@@ -11,7 +11,7 @@ exports.cronJob = cron.job("0 */5 * * * *", async function() {
     users.forEach((user) => {
         if (user.video_link != '') {
             if (moment().unix() > moment(user.date).unix()) {
-                fs.unlink(user.video_link, (err) => {
+                fs.unlink("public/uploads/" + user.video_link, (err) => {
                     if (err) {
                         console.log(err)
                     }
