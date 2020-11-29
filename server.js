@@ -7,7 +7,7 @@ const mongoose = require("mongoose")
 const dotenv = require("dotenv")
 const cron = require("./misc/cron_del")
 var cookieParser = require('cookie-parser');
-
+const path = require("path")
 
 //DATABASE
 dotenv.config()
@@ -42,3 +42,4 @@ cron.cronJob.start();
 app.use('/auth', require("./routes/auth"))
 app.use('/story', require("./routes/video"))
 app.use('/', require("./routes/home"))
+app.use('/', express.static(path.join(__dirname, 'public/dist/')))
