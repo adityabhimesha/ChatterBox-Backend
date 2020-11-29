@@ -42,4 +42,7 @@ cron.cronJob.start();
 app.use('/auth', require("./routes/auth"))
 app.use('/story', require("./routes/video"))
 app.use('/', require("./routes/home"))
-app.use('/', express.static(path.join(__dirname, 'public/dist/')))
+
+if (process.env.production == true) {
+    app.use('/', express.static(path.join(__dirname, 'public/dist/')))
+}
