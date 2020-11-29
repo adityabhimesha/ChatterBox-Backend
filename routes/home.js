@@ -50,7 +50,6 @@ router.post('/chat/conversation', verify, async(req, res) => {
     user = req.body
 
     var messages = await Message.find({ from: { "$in": [user.from, user.to] }, to: { "$in": [user.from, user.to] } }).sort({ date: -1 }).limit(16)
-    console.log(messages.length)
     if (messages.length) {
         res.send(messages)
     } else {

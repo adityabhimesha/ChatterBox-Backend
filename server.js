@@ -15,13 +15,12 @@ mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true, useUnifiedTopo
     () => console.log("Database Connection Successful!")
 )
 
-http.listen(3000, function() {
-    console.log("socket server running at 3000");
-})
-app.listen(port, function() {
-    console.log("Server running at ", port);
-})
-
+http.listen(port, function() {
+        console.log("Server and Socket connections running at ", port);
+    })
+    // app.listen(port, function() {
+    //     console.log("Server running at ", port);
+    // })
 
 exports.io = require('socket.io')(http);
 
