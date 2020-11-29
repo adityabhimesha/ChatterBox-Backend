@@ -1,7 +1,7 @@
 const express = require('express')
 const morgan = require('morgan')
 const app = express()
-var http = require('https').createServer(app);
+var http = require('http').createServer(app);
 const port = process.env.PORT || 8080
 const mongoose = require("mongoose")
 const dotenv = require("dotenv")
